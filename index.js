@@ -16,15 +16,26 @@ console.log(chalk.bold.red('Welcome')
 
 var score = 0;
 //var playerInfo = {};
-var highScore = [
-  {
+var highScore = [{
     name: "Bhushan",
     finalScore: 5
+  },
+  {
+    name: "Reshma",
+    finalScore: 1
+}];
+
+var playerName = readlineSync.question("Enter your Name: "); //this line takes user name
+
+//function to check Highscore
+function checkHighScore(score) {
+    if(score>highScore[1].finalScore){
+      console.log(chalk.yellow("Congragulations! You have made a highscore."));
+    }
+  
   }
-];
 
-var playerName = readlineSync.question("Enter your Name: ");
-
+//function to read the user input and update the score
 function play(question, answer) {
 
   console.log(question);
@@ -38,6 +49,7 @@ function play(question, answer) {
   }
 }
 
+//Array of questions to be asked
 var questions = [{
   question: `Who tricks Naruto into stealing a scroll in the first episode of the series? 
   a: Iruka 
@@ -75,12 +87,15 @@ var questions = [{
   answer: "a"
 }]; 
 
+//loop which traverses through each question and call the play function
 for (var i=0; i<questions.length;i++) {
   var chosenQuestion = questions[i];
   play(chosenQuestion.question, chosenQuestion.answer);
 }
 
-console.log("Your final score is: " + score + "\n");
+console.log("Your final score is: " + score + "\n"); 
+
+checkHighScore(score); //high score checking function call
 
 // playerInfo.name = playerName;
 // playerInfo.finalScore = score;
